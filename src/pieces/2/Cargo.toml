@@ -1,0 +1,34 @@
+[package]
+name = "drone-nrf-map-pieces-2"
+version = "0.10.0"
+authors = ["Valentine Valyaeff <valentine.valyaeff@gmail.com>"]
+edition = "2018"
+repository = "https://github.com/drone-os/drone-nrf-map"
+homepage = "https://www.drone-os.com/"
+documentation = "https://api.drone-os.com/drone-nrf-map/0.10/drone_nrf_map_pieces_2/"
+license = "MIT OR Apache-2.0"
+description = """
+Nordic Semi nRFx peripheral mappings for Drone, an Embedded Operating System.
+"""
+
+[lib]
+path = "lib.rs"
+
+[features]
+default = []
+nrf52810 = ["drone-cortex-m/cortex_m4f_r0p1"]
+nrf52811 = ["drone-cortex-m/cortex_m4f_r0p1"]
+nrf52832 = ["drone-cortex-m/cortex_m4f_r0p1"]
+nrf52840 = ["drone-cortex-m/cortex_m4f_r0p1"]
+
+[dependencies.drone-core]
+version = "0.10.2"
+path = "../../../../drone-core"
+
+[dependencies.drone-cortex-m]
+version = "0.10.0"
+path = "../../../../drone-cortex-m"
+
+[build-dependencies.drone-nrf-map-svd]
+version = "=0.10.0"
+path = "../../../svd"

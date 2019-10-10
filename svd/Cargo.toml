@@ -1,0 +1,19 @@
+[package]
+name = "drone-nrf-map-svd"
+version = "0.10.0"
+authors = ["Valentine Valyaeff <valentine.valyaeff@gmail.com>"]
+edition = "2018"
+repository = "https://github.com/drone-os/drone-nrf-map"
+homepage = "https://www.drone-os.com/"
+documentation = "https://api.drone-os.com/drone-nrf-map/0.10/drone_nrf_map_svd/"
+license = "MIT OR Apache-2.0"
+description = """
+Nordic Semi nRFx SVD to bindings for Drone, an Embedded Operating System.
+"""
+
+[dependencies.drone-svd]
+version = "0.10.0"
+path = "../../drone-svd"
+
+[dependencies]
+failure = "0.1"
