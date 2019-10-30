@@ -1,11 +1,11 @@
 [package]
 name = "drone-nrf-map-pieces"
-version = "0.10.0"
+version = "0.11.0"
 authors = ["Valentine Valyaeff <valentine.valyaeff@gmail.com>"]
 edition = "2018"
 repository = "https://github.com/drone-os/drone-nrf-map"
 homepage = "https://www.drone-os.com/"
-documentation = "https://api.drone-os.com/drone-nrf-map/0.10/drone_nrf_map_pieces/"
+documentation = "https://api.drone-os.com/drone-nrf-map/0.11/drone_nrf_map_pieces/"
 license = "MIT OR Apache-2.0"
 description = """
 Nordic Semi nRFx peripheral mappings for Drone, an Embedded Operating System.
@@ -14,125 +14,62 @@ Nordic Semi nRFx peripheral mappings for Drone, an Embedded Operating System.
 [lib]
 path = "lib.rs"
 
-[features]
-default = []
-nrf52810 = [
-    "drone-cortex-m/cortex_m4f_r0p1",
-    "drone-nrf-map-pieces-1/nrf52810",
-    "drone-nrf-map-pieces-2/nrf52810",
-    "drone-nrf-map-pieces-3/nrf52810",
-    "drone-nrf-map-pieces-4/nrf52810",
-    "drone-nrf-map-pieces-5/nrf52810",
-    "drone-nrf-map-pieces-6/nrf52810",
-    "drone-nrf-map-pieces-7/nrf52810",
-    "drone-nrf-map-pieces-8/nrf52810",
-    "drone-nrf-map-pieces-9/nrf52810",
-    "drone-nrf-map-pieces-10/nrf52810",
-    "drone-nrf-map-pieces-11/nrf52810",
-    "drone-nrf-map-pieces-12/nrf52810",
-]
-nrf52811 = [
-    "drone-cortex-m/cortex_m4f_r0p1",
-    "drone-nrf-map-pieces-1/nrf52811",
-    "drone-nrf-map-pieces-2/nrf52811",
-    "drone-nrf-map-pieces-3/nrf52811",
-    "drone-nrf-map-pieces-4/nrf52811",
-    "drone-nrf-map-pieces-5/nrf52811",
-    "drone-nrf-map-pieces-6/nrf52811",
-    "drone-nrf-map-pieces-7/nrf52811",
-    "drone-nrf-map-pieces-8/nrf52811",
-    "drone-nrf-map-pieces-9/nrf52811",
-    "drone-nrf-map-pieces-10/nrf52811",
-    "drone-nrf-map-pieces-11/nrf52811",
-    "drone-nrf-map-pieces-12/nrf52811",
-]
-nrf52832 = [
-    "drone-cortex-m/cortex_m4f_r0p1",
-    "drone-nrf-map-pieces-1/nrf52832",
-    "drone-nrf-map-pieces-2/nrf52832",
-    "drone-nrf-map-pieces-3/nrf52832",
-    "drone-nrf-map-pieces-4/nrf52832",
-    "drone-nrf-map-pieces-5/nrf52832",
-    "drone-nrf-map-pieces-6/nrf52832",
-    "drone-nrf-map-pieces-7/nrf52832",
-    "drone-nrf-map-pieces-8/nrf52832",
-    "drone-nrf-map-pieces-9/nrf52832",
-    "drone-nrf-map-pieces-10/nrf52832",
-    "drone-nrf-map-pieces-11/nrf52832",
-    "drone-nrf-map-pieces-12/nrf52832",
-]
-nrf52840 = [
-    "drone-cortex-m/cortex_m4f_r0p1",
-    "drone-nrf-map-pieces-1/nrf52840",
-    "drone-nrf-map-pieces-2/nrf52840",
-    "drone-nrf-map-pieces-3/nrf52840",
-    "drone-nrf-map-pieces-4/nrf52840",
-    "drone-nrf-map-pieces-5/nrf52840",
-    "drone-nrf-map-pieces-6/nrf52840",
-    "drone-nrf-map-pieces-7/nrf52840",
-    "drone-nrf-map-pieces-8/nrf52840",
-    "drone-nrf-map-pieces-9/nrf52840",
-    "drone-nrf-map-pieces-10/nrf52840",
-    "drone-nrf-map-pieces-11/nrf52840",
-    "drone-nrf-map-pieces-12/nrf52840",
-]
-
 [dependencies.drone-core]
-version = "0.10.2"
+version = "0.11.0"
 path = "../../../drone-core"
 
 [dependencies.drone-cortex-m]
-version = "0.10.0"
+version = "0.11.0"
 path = "../../../drone-cortex-m"
 
 [dependencies.drone-nrf-map-pieces-1]
-version = "=0.10.0"
+version = "=0.11.0"
 path = "1"
 
 [dependencies.drone-nrf-map-pieces-2]
-version = "=0.10.0"
+version = "=0.11.0"
 path = "2"
 
 [dependencies.drone-nrf-map-pieces-3]
-version = "=0.10.0"
+version = "=0.11.0"
 path = "3"
 
 [dependencies.drone-nrf-map-pieces-4]
-version = "=0.10.0"
+version = "=0.11.0"
 path = "4"
 
 [dependencies.drone-nrf-map-pieces-5]
-version = "=0.10.0"
+version = "=0.11.0"
 path = "5"
 
 [dependencies.drone-nrf-map-pieces-6]
-version = "=0.10.0"
+version = "=0.11.0"
 path = "6"
 
 [dependencies.drone-nrf-map-pieces-7]
-version = "=0.10.0"
+version = "=0.11.0"
 path = "7"
 
 [dependencies.drone-nrf-map-pieces-8]
-version = "=0.10.0"
+version = "=0.11.0"
 path = "8"
 
 [dependencies.drone-nrf-map-pieces-9]
-version = "=0.10.0"
+version = "=0.11.0"
 path = "9"
 
 [dependencies.drone-nrf-map-pieces-10]
-version = "=0.10.0"
+version = "=0.11.0"
 path = "10"
 
 [dependencies.drone-nrf-map-pieces-11]
-version = "=0.10.0"
+version = "=0.11.0"
 path = "11"
 
 [dependencies.drone-nrf-map-pieces-12]
-version = "=0.10.0"
+version = "=0.11.0"
 path = "12"
 
 [build-dependencies.drone-nrf-map-svd]
-version = "=0.10.0"
+version = "=0.11.0"
 path = "../../svd"
