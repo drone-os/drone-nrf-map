@@ -8,42 +8,33 @@
   <version>1</version>
   <description>nRF52810 reference description for radio MCU with ARM 32-bit Cortex-M4 Microcontroller </description>
   <licenseText>
-Copyright (c) 2010 - 2018, Nordic Semiconductor ASA\n
+Copyright (c) 2010 - 2018, Nordic Semiconductor ASA All rights reserved.\n
 \n
-All rights reserved.\n
-\n
-Redistribution and use in source and binary forms, with or without modification,\n
-are permitted provided that the following conditions are met:\n
+Redistribution and use in source and binary forms, with or without\n
+modification, are permitted provided that the following conditions are met:\n
 \n
 1. Redistributions of source code must retain the above copyright notice, this\n
    list of conditions and the following disclaimer.\n
 \n
-2. Redistributions in binary form, except as embedded into a Nordic\n
-   Semiconductor ASA integrated circuit in a product or a software update for\n
-   such product, must reproduce the above copyright notice, this list of\n
-   conditions and the following disclaimer in the documentation and/or other\n
-   materials provided with the distribution.\n
+2. Redistributions in binary form must reproduce the above copyright\n
+   notice, this list of conditions and the following disclaimer in the\n
+   documentation and/or other materials provided with the distribution.\n
 \n
 3. Neither the name of Nordic Semiconductor ASA nor the names of its\n
    contributors may be used to endorse or promote products derived from this\n
    software without specific prior written permission.\n
 \n
-4. This software, with or without modification, must only be used with a\n
-   Nordic Semiconductor ASA integrated circuit.\n
-\n
-5. Any software provided in binary form under this license must not be reverse\n
-   engineered, decompiled, modified and/or disassembled.\n
-\n
-THIS SOFTWARE IS PROVIDED BY NORDIC SEMICONDUCTOR ASA "AS IS" AND ANY EXPRESS\n
-OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES\n
-OF MERCHANTABILITY, NONINFRINGEMENT, AND FITNESS FOR A PARTICULAR PURPOSE ARE\n
-DISCLAIMED. IN NO EVENT SHALL NORDIC SEMICONDUCTOR ASA OR CONTRIBUTORS BE\n
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"\n
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\n
+IMPLIED WARRANTIES OF MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE\n
+ARE DISCLAIMED. IN NO EVENT SHALL NORDIC SEMICONDUCTOR ASA OR CONTRIBUTORS BE\n
 LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR\n
-CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE\n
-GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)\n
-HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT\n
-LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT\n
-OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF\n
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS\n
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN\n
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)\n
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE\n
+POSSIBILITY OF SUCH DAMAGE.\n
         </licenseText>
   <addressUnitBits>8</addressUnitBits>
   <width>32</width>
@@ -229,6 +220,16 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\
                     <value>0x52810</value>
                   </enumeratedValue>
                   <enumeratedValue>
+                    <name>N52811</name>
+                    <description>nRF52811</description>
+                    <value>0x52811</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <name>N52832</name>
+                    <description>nRF52832</description>
+                    <value>0x52832</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
                     <name>Unspecified</name>
                     <description>Unspecified</description>
                     <value>0xFFFFFFFF</value>
@@ -321,6 +322,11 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\
                     <name>QC</name>
                     <description>QCxx - 32-pin QFN</description>
                     <value>0x2003</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <name>CA</name>
+                    <description>CAxx - WLCSP</description>
+                    <value>0x2004</value>
                   </enumeratedValue>
                   <enumeratedValue>
                     <name>Unspecified</name>
@@ -663,7 +669,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\
       <size>0x20</size>
       <registers>
         <register>
-          <dim>0xF</dim>
+          <dim>0xD</dim>
           <dimIncrement>0x4</dimIncrement>
           <name>NRFFW[%s]</name>
           <description>Description collection: Reserved for Nordic firmware design</description>
@@ -2476,13 +2482,13 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\
       <registers>
         <register>
           <name>TASKS_CONSTLAT</name>
-          <description>Enable constant latency mode</description>
+          <description>Enable Constant Latency mode</description>
           <addressOffset>0x078</addressOffset>
           <access>write-only</access>
           <fields>
             <field>
               <name>TASKS_CONSTLAT</name>
-              <description>Enable constant latency mode</description>
+              <description>Enable Constant Latency mode</description>
               <lsb>0</lsb>
               <msb>0</msb>
               <enumeratedValues>
@@ -2497,13 +2503,13 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\
         </register>
         <register>
           <name>TASKS_LOWPWR</name>
-          <description>Enable low power mode (variable latency)</description>
+          <description>Enable Low-power mode (variable latency)</description>
           <addressOffset>0x07C</addressOffset>
           <access>write-only</access>
           <fields>
             <field>
               <name>TASKS_LOWPWR</name>
-              <description>Enable low power mode (variable latency)</description>
+              <description>Enable Low-power mode (variable latency)</description>
               <lsb>0</lsb>
               <msb>0</msb>
               <enumeratedValues>

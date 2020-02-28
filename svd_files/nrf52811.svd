@@ -8,42 +8,33 @@
   <version>1</version>
   <description>nRF52811 reference description for radio MCU with ARM 32-bit Cortex-M4 Microcontroller </description>
   <licenseText>
-Copyright (c) 2010 - 2018, Nordic Semiconductor ASA\n
+Copyright (c) 2010 - 2018, Nordic Semiconductor ASA All rights reserved.\n
 \n
-All rights reserved.\n
-\n
-Redistribution and use in source and binary forms, with or without modification,\n
-are permitted provided that the following conditions are met:\n
+Redistribution and use in source and binary forms, with or without\n
+modification, are permitted provided that the following conditions are met:\n
 \n
 1. Redistributions of source code must retain the above copyright notice, this\n
    list of conditions and the following disclaimer.\n
 \n
-2. Redistributions in binary form, except as embedded into a Nordic\n
-   Semiconductor ASA integrated circuit in a product or a software update for\n
-   such product, must reproduce the above copyright notice, this list of\n
-   conditions and the following disclaimer in the documentation and/or other\n
-   materials provided with the distribution.\n
+2. Redistributions in binary form must reproduce the above copyright\n
+   notice, this list of conditions and the following disclaimer in the\n
+   documentation and/or other materials provided with the distribution.\n
 \n
 3. Neither the name of Nordic Semiconductor ASA nor the names of its\n
    contributors may be used to endorse or promote products derived from this\n
    software without specific prior written permission.\n
 \n
-4. This software, with or without modification, must only be used with a\n
-   Nordic Semiconductor ASA integrated circuit.\n
-\n
-5. Any software provided in binary form under this license must not be reverse\n
-   engineered, decompiled, modified and/or disassembled.\n
-\n
-THIS SOFTWARE IS PROVIDED BY NORDIC SEMICONDUCTOR ASA "AS IS" AND ANY EXPRESS\n
-OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES\n
-OF MERCHANTABILITY, NONINFRINGEMENT, AND FITNESS FOR A PARTICULAR PURPOSE ARE\n
-DISCLAIMED. IN NO EVENT SHALL NORDIC SEMICONDUCTOR ASA OR CONTRIBUTORS BE\n
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"\n
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\n
+IMPLIED WARRANTIES OF MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE\n
+ARE DISCLAIMED. IN NO EVENT SHALL NORDIC SEMICONDUCTOR ASA OR CONTRIBUTORS BE\n
 LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR\n
-CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE\n
-GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)\n
-HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT\n
-LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT\n
-OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF\n
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS\n
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN\n
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)\n
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE\n
+POSSIBILITY OF SUCH DAMAGE.\n
         </licenseText>
   <addressUnitBits>8</addressUnitBits>
   <width>32</width>
@@ -232,6 +223,11 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\
                     <name>N52811</name>
                     <description>nRF52811</description>
                     <value>0x52811</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <name>N52832</name>
+                    <description>nRF52832</description>
+                    <value>0x52832</value>
                   </enumeratedValue>
                   <enumeratedValue>
                     <name>Unspecified</name>
@@ -673,7 +669,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\
       <size>0x20</size>
       <registers>
         <register>
-          <dim>0xF</dim>
+          <dim>0xD</dim>
           <dimIncrement>0x4</dimIncrement>
           <name>NRFFW[%s]</name>
           <description>Description collection: Reserved for Nordic firmware design</description>
@@ -9894,13 +9890,13 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\
         </register>
         <register>
           <name>EVENTS_EDEND</name>
-          <description>Sampling of energy detection complete. A new ED sample is ready for readout from the RADIO.EDSAMPLE register.</description>
+          <description>Sampling of energy detection complete. A new ED sample is ready for readout from the RADIO.EDSAMPLE register</description>
           <addressOffset>0x13C</addressOffset>
           <access>read-write</access>
           <fields>
             <field>
               <name>EVENTS_EDEND</name>
-              <description>Sampling of energy detection complete. A new ED sample is ready for readout from the RADIO.EDSAMPLE register.</description>
+              <description>Sampling of energy detection complete. A new ED sample is ready for readout from the RADIO.EDSAMPLE register</description>
               <lsb>0</lsb>
               <msb>0</msb>
               <enumeratedValues>
@@ -10128,13 +10124,13 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\
         </register>
         <register>
           <name>EVENTS_PHYEND</name>
-          <description>Generated in Ble_LR125Kbit, Ble_LR500Kbit and Ieee802154_250Kbit modes when last bit is sent on air.</description>
+          <description>Generated when last bit is sent on air</description>
           <addressOffset>0x16C</addressOffset>
           <access>read-write</access>
           <fields>
             <field>
               <name>EVENTS_PHYEND</name>
-              <description>Generated in Ble_LR125Kbit, Ble_LR500Kbit and Ieee802154_250Kbit modes when last bit is sent on air.</description>
+              <description>Generated when last bit is sent on air</description>
               <lsb>0</lsb>
               <msb>0</msb>
               <enumeratedValues>
@@ -12116,37 +12112,37 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\
               <enumeratedValues>
                 <enumeratedValue>
                   <name>Nrf_1Mbit</name>
-                  <description>1 Mbit/s Nordic proprietary radio mode</description>
+                  <description>1 Mbps Nordic proprietary radio mode</description>
                   <value>0</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>Nrf_2Mbit</name>
-                  <description>2 Mbit/s Nordic proprietary radio mode</description>
+                  <description>2 Mbps Nordic proprietary radio mode</description>
                   <value>1</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>Ble_1Mbit</name>
-                  <description>1 Mbit/s BLE</description>
+                  <description>1 Mbps BLE</description>
                   <value>3</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>Ble_2Mbit</name>
-                  <description>2 Mbit/s BLE</description>
+                  <description>2 Mbps BLE</description>
                   <value>4</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>Ble_LR125Kbit</name>
-                  <description>Long range 125 kbit/s TX, 125 kbit/s and 500 kbit/s RX</description>
+                  <description>Long range 125 kbps TX, 125 kbps and 500 kbps RX</description>
                   <value>5</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>Ble_LR500Kbit</name>
-                  <description>Long range 500 kbit/s TX, 125 kbit/s and 500 kbit/s RX</description>
+                  <description>Long range 500 kbps TX, 125 kbps and 500 kbps RX</description>
                   <value>6</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>Ieee802154_250Kbit</name>
-                  <description>IEEE 802.15.4-2006 250 kbit/s</description>
+                  <description>IEEE 802.15.4-2006 250 kbps</description>
                   <value>15</value>
                 </enumeratedValue>
               </enumeratedValues>
@@ -12281,7 +12277,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\
             </field>
             <field>
               <name>ENDIAN</name>
-              <description>On air endianness of packet, this applies to the S0, LENGTH, S1 and the PAYLOAD fields.</description>
+              <description>On-air endianness of packet, this applies to the S0, LENGTH, S1, and the PAYLOAD fields.</description>
               <lsb>24</lsb>
               <msb>24</msb>
               <enumeratedValues>
@@ -12761,7 +12757,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\
           <fields>
             <field>
               <name>DATAWHITEIV</name>
-              <description>Data whitening initial value. Bit 6 is hard-wired to '1', writing '0' to it has no effect, and it will always be read back and used by the device as '1'.</description>
+              <description>Data whitening initial value. Bit 6 is hardwired to '1', writing '0' to it has no effect, and it will always be read back and used by the device as '1'.</description>
               <lsb>0</lsb>
               <msb>6</msb>
             </field>
@@ -13184,7 +13180,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\
             </field>
             <field>
               <name>CCACORRTHRES</name>
-              <description>CCA correlator busy threshold. Only relevant to CarrierMode, CarrierAndEdMode and CarrierOrEdMode.</description>
+              <description>CCA correlator busy threshold. Only relevant to CarrierMode, CarrierAndEdMode, and CarrierOrEdMode.</description>
               <lsb>16</lsb>
               <msb>23</msb>
             </field>
@@ -13605,10 +13601,11 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\
               <description>Clears GPIO pattern array for antenna control</description>
               <lsb>0</lsb>
               <msb>0</msb>
+              <modifiedWriteValues>oneToClear</modifiedWriteValues>
               <enumeratedValues>
                 <enumeratedValue>
                   <name>Clear</name>
-                  <description>Writing a '1' clears the GPIO pattern; writing a '0' has no effect</description>
+                  <description>Clear the GPIO pattern</description>
                   <value>1</value>
                 </enumeratedValue>
               </enumeratedValues>
@@ -13695,7 +13692,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\
                 <name>MAXCNT</name>
                 <description>Maximum number of buffer words to transfer</description>
                 <lsb>0</lsb>
-                <msb>15</msb>
+                <msb>12</msb>
               </field>
             </fields>
           </register>

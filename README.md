@@ -19,12 +19,13 @@ a drop-in replacement for it.
 
 ## Supported Devices
 
-| `nrf_mcu`  | Core name             | Product specification                                                 |
-|------------|-----------------------|-----------------------------------------------------------------------|
-| `nrf52810` | ARM® Cortex®-M4F r0p1 | [PS v1.3](https://infocenter.nordicsemi.com/pdf/nRF52810_PS_v1.3.pdf) |
-| `nrf52811` | ARM® Cortex®-M4F r0p1 | [PS v1.0](https://infocenter.nordicsemi.com/pdf/nRF52811_PS_v1.0.pdf) |
-| `nrf52832` | ARM® Cortex®-M4F r0p1 | [PS v1.4](https://infocenter.nordicsemi.com/pdf/nRF52832_PS_v1.4.pdf) |
-| `nrf52840` | ARM® Cortex®-M4F r0p1 | [PS v1.1](https://infocenter.nordicsemi.com/pdf/nRF52840_PS_v1.1.pdf) |
+| `nrf_mcu`  | Core name              | Product specification                                                 |
+|------------|------------------------|-----------------------------------------------------------------------|
+| `nrf52810` | ARM® Cortex®-M4F r0p1  | [PS v1.3](https://infocenter.nordicsemi.com/pdf/nRF52810_PS_v1.3.pdf) |
+| `nrf52811` | ARM® Cortex®-M4F r0p1  | [PS v1.0](https://infocenter.nordicsemi.com/pdf/nRF52811_PS_v1.0.pdf) |
+| `nrf52832` | ARM® Cortex®-M4F r0p1  | [PS v1.4](https://infocenter.nordicsemi.com/pdf/nRF52832_PS_v1.4.pdf) |
+| `nrf52840` | ARM® Cortex®-M4F r0p1  | [PS v1.1](https://infocenter.nordicsemi.com/pdf/nRF52840_PS_v1.1.pdf) |
+| `nrf9160`  | ARM® Cortex®-M33F r0p2 | [PS v1.1](https://infocenter.nordicsemi.com/pdf/nRF9160_PS_v1.1.pdf)  |
 
 `nrf_mcu` config flag should be set at the application level according to
 this table.

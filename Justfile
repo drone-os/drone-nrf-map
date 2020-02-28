@@ -23,10 +23,12 @@ lint:
 # Check each MCU
 check-all:
 	rustup target add thumbv7em-none-eabihf
+	rustup target add thumbv8m.main-none-eabihf
 	DRONE_RUSTFLAGS='--cfg cortex_m_core="cortex_m4f_r0p1" --cfg nrf_mcu="nrf52810"' drone env thumbv7em-none-eabihf -- cargo check --package drone-nrf-map --features "{{features}}"
 	DRONE_RUSTFLAGS='--cfg cortex_m_core="cortex_m4f_r0p1" --cfg nrf_mcu="nrf52811"' drone env thumbv7em-none-eabihf -- cargo check --package drone-nrf-map --features "{{features}}"
 	DRONE_RUSTFLAGS='--cfg cortex_m_core="cortex_m4f_r0p1" --cfg nrf_mcu="nrf52832"' drone env thumbv7em-none-eabihf -- cargo check --package drone-nrf-map --features "{{features}}"
 	DRONE_RUSTFLAGS='--cfg cortex_m_core="cortex_m4f_r0p1" --cfg nrf_mcu="nrf52840"' drone env thumbv7em-none-eabihf -- cargo check --package drone-nrf-map --features "{{features}}"
+	DRONE_RUSTFLAGS='--cfg cortex_m_core="cortex_m33f_r0p2" --cfg nrf_mcu="nrf9160"' drone env thumbv8m.main-none-eabihf -- cargo check --package drone-nrf-map --features "{{features}}"
 
 # Generate the docs
 doc:
@@ -92,7 +94,7 @@ publish:
 
 # Publish the docs to api.drone-os.com
 publish-doc: doc
-	dir=$(sed -n 's/.*api\.drone-os\.com\/\(.*\)"/\1/;T;p' Cargo.toml) \
+	dir=$(sed -n 's/.*api\.drone-os\.com\/\(.*\/.*\)\/.*\/"/\1/;T;p' Cargo.toml) \
 		&& rm -rf ../drone-api/$dir \
 		&& cp -rT target/doc ../drone-api/$dir \
 		&& cp -rT target/{{target}}/doc ../drone-api/$dir \

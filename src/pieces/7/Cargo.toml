@@ -1,11 +1,11 @@
 [package]
 name = "drone-nrf-map-pieces-7"
-version = "0.11.0"
+version = "0.12.0"
 authors = ["Valentine Valyaeff <valentine.valyaeff@gmail.com>"]
 edition = "2018"
 repository = "https://github.com/drone-os/drone-nrf-map"
 homepage = "https://www.drone-os.com/"
-documentation = "https://api.drone-os.com/drone-nrf-map/0.11/drone_nrf_map_pieces_7/"
+documentation = "https://api.drone-os.com/drone-nrf-map/0.12/drone_nrf_map_pieces_7/"
 license = "MIT OR Apache-2.0"
 description = """
 Nordic Semi nRFx peripheral mappings for Drone, an Embedded Operating System.
@@ -15,13 +15,13 @@ Nordic Semi nRFx peripheral mappings for Drone, an Embedded Operating System.
 path = "lib.rs"
 
 [dependencies.drone-core]
-version = "0.11.0"
+version = "0.12.0"
 path = "../../../../drone-core"
 
 [dependencies.drone-cortex-m]
-version = "0.11.0"
+version = "0.12.0"
 path = "../../../../drone-cortex-m"
 
 [build-dependencies.drone-nrf-map-svd]
-version = "=0.11.0"
+version = "=0.12.0"
 path = "../../../svd"
