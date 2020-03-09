@@ -1,0 +1,27 @@
+[package]
+name = "drone-nrf-map-periph-uarte"
+version = "0.12.0"
+authors = ["Valentine Valyaeff <valentine.valyaeff@gmail.com>"]
+edition = "2018"
+repository = "https://github.com/drone-os/drone-nrf-map"
+homepage = "https://www.drone-os.com/"
+documentation = "https://api.drone-os.com/drone-nrf-map/0.12/drone_nrf_map_periph_uarte/"
+license = "MIT OR Apache-2.0"
+description = """
+Nordic Semi nRFx peripheral mappings for Drone, an Embedded Operating System.
+"""
+
+[lib]
+path = "lib.rs"
+
+[dependencies.drone-core]
+version = "0.12.0"
+path = "../../../../drone-core"
+
+[dependencies.drone-cortex-m]
+version = "0.12.0"
+path = "../../../../drone-cortex-m"
+
+[dependencies.drone-nrf-map-pieces]
+version = "=0.12.0"
+path = "../../pieces"

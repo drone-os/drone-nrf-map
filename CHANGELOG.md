@@ -13,4 +13,5 @@ Possible log types:
 
 ### Unreleased
 
+- [added] Added `uarte` peripheral mappings for nRF9160
 - [added] Added support for nRF9160 devices

@@ -2,7 +2,7 @@ cortex_m_core := 'cortex_m4f_r0p1'
 nrf_mcu := 'nrf52832'
 export DRONE_RUSTFLAGS := '--cfg cortex_m_core="' + cortex_m_core + '" ' + '--cfg nrf_mcu="' + nrf_mcu + '"'
 target := 'thumbv7em-none-eabihf'
-features := ''
+features := 'bit-band uarte'
 
 # Install dependencies
 deps:
@@ -20,16 +20,6 @@ lint:
 	cargo clippy --package drone-nrf-map-svd
 	drone env {{target}} -- cargo clippy --features "{{features}}" --all --exclude drone-nrf-map-svd
 
-# Check each MCU
-check-all:
-	rustup target add thumbv7em-none-eabihf
-	rustup target add thumbv8m.main-none-eabihf
-	DRONE_RUSTFLAGS='--cfg cortex_m_core="cortex_m4f_r0p1" --cfg nrf_mcu="nrf52810"' drone env thumbv7em-none-eabihf -- cargo check --package drone-nrf-map --features "{{features}}"
-	DRONE_RUSTFLAGS='--cfg cortex_m_core="cortex_m4f_r0p1" --cfg nrf_mcu="nrf52811"' drone env thumbv7em-none-eabihf -- cargo check --package drone-nrf-map --features "{{features}}"
-	DRONE_RUSTFLAGS='--cfg cortex_m_core="cortex_m4f_r0p1" --cfg nrf_mcu="nrf52832"' drone env thumbv7em-none-eabihf -- cargo check --package drone-nrf-map --features "{{features}}"
-	DRONE_RUSTFLAGS='--cfg cortex_m_core="cortex_m4f_r0p1" --cfg nrf_mcu="nrf52840"' drone env thumbv7em-none-eabihf -- cargo check --package drone-nrf-map --features "{{features}}"
-	DRONE_RUSTFLAGS='--cfg cortex_m_core="cortex_m33f_r0p2" --cfg nrf_mcu="nrf9160"' drone env thumbv8m.main-none-eabihf -- cargo check --package drone-nrf-map --features "{{features}}"
-
 # Generate the docs
 doc:
 	cargo doc --package drone-nrf-map-svd
@@ -39,6 +29,18 @@ doc:
 doc-open: doc
 	drone env {{target}} -- cargo doc --features "{{features}}" --package drone-nrf-map --open
 
+# Run the tests
+test:
+	drone env -- cargo test --features "{{features}} std" --package drone-nrf-map
+
+# Test all MCUs
+test-all:
+	DRONE_RUSTFLAGS='--cfg cortex_m_core="cortex_m4f_r0p1" --cfg nrf_mcu="nrf52810"' drone env -- cargo test --package drone-nrf-map --features "{{features}} std"
+	DRONE_RUSTFLAGS='--cfg cortex_m_core="cortex_m4f_r0p1" --cfg nrf_mcu="nrf52811"' drone env -- cargo test --package drone-nrf-map --features "{{features}} std"
+	DRONE_RUSTFLAGS='--cfg cortex_m_core="cortex_m4f_r0p1" --cfg nrf_mcu="nrf52832"' drone env -- cargo test --package drone-nrf-map --features "{{features}} std"
+	DRONE_RUSTFLAGS='--cfg cortex_m_core="cortex_m4f_r0p1" --cfg nrf_mcu="nrf52840"' drone env -- cargo test --package drone-nrf-map --features "{{features}} std"
+	DRONE_RUSTFLAGS='--cfg cortex_m_core="cortex_m33f_r0p2" --cfg nrf_mcu="nrf9160"' drone env -- cargo test --package drone-nrf-map --features "{{features}} std"
+
 # Update README.md
 readme:
 	cargo readme -o README.md
@@ -46,15 +48,15 @@ readme:
 # Bump crate versions
 version-bump version drone-core-version drone-cortex-m-version drone-svd-version:
 	sed -i "s/\(api\.drone-os\.com\/drone-nrf-map\/\)[0-9]\+\(\.[0-9]\+\)\+/\1$(echo {{version}} | sed 's/\(.*\)\.[0-9]\+/\1/')/" \
-		Cargo.toml src/pieces/*/Cargo.toml src/pieces/Cargo.toml svd/Cargo.toml src/lib.rs
+		Cargo.toml src/pieces/*/Cargo.toml src/pieces/Cargo.toml src/periph/*/Cargo.toml svd/Cargo.toml src/lib.rs
 	sed -i '/\[.*\]/h;/version = ".*"/{x;s/\[package\]/version = "{{version}}"/;t;x}' \
-		Cargo.toml src/pieces/*/Cargo.toml src/pieces/Cargo.toml svd/Cargo.toml
+		Cargo.toml src/pieces/*/Cargo.toml src/pieces/Cargo.toml src/periph/*/Cargo.toml svd/Cargo.toml
 	sed -i '/\[.*\]/h;/version = "=.*"/{x;s/\[.*drone-nrf-map-.*\]/version = "={{version}}"/;t;x}' \
-		Cargo.toml src/pieces/*/Cargo.toml src/pieces/Cargo.toml
+		Cargo.toml src/pieces/*/Cargo.toml src/pieces/Cargo.toml src/periph/*/Cargo.toml
 	sed -i '/\[.*\]/h;/version = ".*"/{x;s/\[.*drone-core\]/version = "{{drone-core-version}}"/;t;x}' \
-		Cargo.toml src/pieces/*/Cargo.toml src/pieces/Cargo.toml
+		Cargo.toml src/pieces/*/Cargo.toml src/pieces/Cargo.toml src/periph/*/Cargo.toml
 	sed -i '/\[.*\]/h;/version = ".*"/{x;s/\[.*drone-cortex-m\]/version = "{{drone-cortex-m-version}}"/;t;x}' \
-		Cargo.toml src/pieces/*/Cargo.toml src/pieces/Cargo.toml
+		Cargo.toml src/pieces/*/Cargo.toml src/pieces/Cargo.toml src/periph/*/Cargo.toml
 	sed -i '/\[.*\]/h;/version = ".*"/{x;s/\[.*drone-svd\]/version = "{{drone-svd-version}}"/;t;x}' \
 		svd/Cargo.toml
 	sed -i 's/\(drone-nrf-map.*\)version = "[^"]\+"/\1version = "{{version}}"/' \
@@ -89,6 +91,8 @@ publish:
 	cd src/pieces/12 && drone env {{target}} -- cargo publish
 	sleep 5
 	cd src/pieces && drone env {{target}} -- cargo publish
+	sleep 5
+	cd src/periph/uarte && drone env {{target}} -- cargo publish
 	sleep 5
 	drone env {{target}} -- cargo publish --features "{{features}}"
 

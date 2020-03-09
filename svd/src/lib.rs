@@ -9,10 +9,8 @@
 
 pub use anyhow::{bail, Result};
 
-use drone_svd::Device;
+use drone_svd::{Config, Device};
 use std::{collections::HashSet, env, fs::File, path::Path};
-
-const REG_EXCLUDE: &[&str] = &["FPU", "FPU_CPACR", "ITM", "MPU", "NVIC", "SCB", "STK", "TPIU"];
 
 /// Generates code for register mappings.
 pub fn generate_regs(pool_number: usize, pool_size: usize) -> Result<()> {
@@ -20,7 +18,7 @@ pub fn generate_regs(pool_number: usize, pool_size: usize) -> Result<()> {
     let out_dir = Path::new(&out_dir);
     let dev = svd_deserialize()?;
     let mut output = File::create(out_dir.join("svd_regs.rs"))?;
-    drone_svd::generate_registers(&mut output, dev, pool_number, pool_size, REG_EXCLUDE)
+    svd_config()?.generate_regs(&mut output, dev, pool_number, pool_size)
 }
 
 /// Generates code for interrupts and register tokens struct.
@@ -30,7 +28,21 @@ pub fn generate_rest() -> Result<()> {
     let dev = svd_deserialize()?;
     let mut reg_output = File::create(out_dir.join("svd_reg_index.rs"))?;
     let mut int_output = File::create(out_dir.join("svd_interrupts.rs"))?;
-    drone_svd::generate_rest(&mut reg_output, &mut int_output, dev, "nrf_reg_tokens", REG_EXCLUDE)
+    svd_config()?.generate_rest(&mut reg_output, &mut int_output, dev)
+}
+
+fn svd_config() -> Result<Config<'static>> {
+    let mut options = Config::new("nrf_reg_tokens");
+    if cfg!(feature = "bit-band")
+        && matches!(
+            env::var("CARGO_CFG_NRF_MCU")?.as_ref(),
+            "nrf52810" | "nrf52811" | "nrf52832" | "nrf52840"
+        )
+    {
+        options.bit_band(0x4000_0000..0x4010_0000);
+    }
+    options.exclude_peripherals(&["FPU_NS", "FPU_S"]);
+    Ok(options)
 }
 
 fn svd_deserialize() -> Result<Device> {
