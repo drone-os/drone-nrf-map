@@ -4,7 +4,7 @@
 #![deny(elided_lifetimes_in_paths)]
 #![warn(missing_docs)]
 #![warn(clippy::pedantic)]
-#![allow(clippy::must_use_candidate, clippy::type_repetition_in_bounds)]
+#![allow(clippy::type_repetition_in_bounds, clippy::wildcard_imports)]
 #![no_std]
 
 use drone_core::periph;
@@ -291,11 +291,8 @@ macro_rules! map_uarte_ns_s {
         $uarte_ns:ident,
         $uarte_s:ident,
         $spim_ns:ident,
-        $spim_s:ident,
         $spis_ns:ident,
-        $spis_s:ident,
         $twim_ns:ident,
-        $twim_s:ident,
     ) => {
         map_uarte!(
             $uarte_ns_macro_doc,
@@ -303,6 +300,7 @@ macro_rules! map_uarte_ns_s {
             $uarte_ns_ty_doc,
             $uarte_ns_ty,
             $uarte_ns,
+            (),
             $spim_ns,
             $spis_ns,
             $twim_ns,
@@ -313,9 +311,10 @@ macro_rules! map_uarte_ns_s {
             $uarte_s_ty_doc,
             $uarte_s_ty,
             $uarte_s,
-            $spim_s,
-            $spis_s,
-            $twim_s,
+            ($uarte_ns),
+            $spim_ns,
+            $spis_ns,
+            $twim_ns,
         );
     };
 }
@@ -328,9 +327,10 @@ macro_rules! map_uarte {
         $uarte_ty_doc:expr,
         $uarte_ty:ident,
         $uarte:ident,
-        $spim:ident,
-        $spis:ident,
-        $twim:ident,
+        ($($uarte_ns:ident)?),
+        $spim_ns:ident,
+        $spis_ns:ident,
+        $twim_ns:ident,
     ) => {
         periph::map! {
             #[doc = $uarte_macro_doc]
@@ -347,156 +347,156 @@ macro_rules! map_uarte {
             UARTE {
                 $uarte;
                 TASKS_STARTRX {
-                    TASKS_STARTRX($twim TASKS_STARTRX);
+                    TASKS_STARTRX($twim_ns TASKS_STARTRX);
                     TASKS_STARTRX { TASKS_STARTRX }
                 }
                 TASKS_STOPRX {
-                    TASKS_STOPRX;
+                    TASKS_STOPRX$(($uarte_ns TASKS_STOPRX))*;
                     TASKS_STOPRX { TASKS_STOPRX }
                 }
                 TASKS_STARTTX {
-                    TASKS_STARTTX($twim TASKS_STARTTX);
+                    TASKS_STARTTX($twim_ns TASKS_STARTTX);
                     TASKS_STARTTX { TASKS_STARTTX }
                 }
                 TASKS_STOPTX {
-                    TASKS_STOPTX;
+                    TASKS_STOPTX$(($uarte_ns TASKS_STOPTX))*;
                     TASKS_STOPTX { TASKS_STOPTX }
                 }
                 TASKS_FLUSHRX {
-                    TASKS_FLUSHRX;
+                    TASKS_FLUSHRX$(($uarte_ns TASKS_FLUSHRX))*;
                     TASKS_FLUSHRX { TASKS_FLUSHRX }
                 }
                 SUBSCRIBE_STARTRX {
-                    SUBSCRIBE_STARTRX($twim SUBSCRIBE_STARTRX);
+                    SUBSCRIBE_STARTRX($twim_ns SUBSCRIBE_STARTRX);
                     CHIDX { CHIDX }
                     EN { EN }
                 }
                 SUBSCRIBE_STOPRX {
-                    SUBSCRIBE_STOPRX;
+                    SUBSCRIBE_STOPRX$(($uarte_ns SUBSCRIBE_STOPRX))*;
                     CHIDX { CHIDX }
                     EN { EN }
                 }
                 SUBSCRIBE_STARTTX {
-                    SUBSCRIBE_STARTTX($twim SUBSCRIBE_STARTTX);
+                    SUBSCRIBE_STARTTX($twim_ns SUBSCRIBE_STARTTX);
                     CHIDX { CHIDX }
                     EN { EN }
                 }
                 SUBSCRIBE_STOPTX {
-                    SUBSCRIBE_STOPTX;
+                    SUBSCRIBE_STOPTX$(($uarte_ns SUBSCRIBE_STOPTX))*;
                     CHIDX { CHIDX }
                     EN { EN }
                 }
                 SUBSCRIBE_FLUSHRX {
-                    SUBSCRIBE_FLUSHRX;
+                    SUBSCRIBE_FLUSHRX$(($uarte_ns SUBSCRIBE_FLUSHRX))*;
                     CHIDX { CHIDX }
                     EN { EN }
                 }
                 EVENTS_CTS {
-                    EVENTS_CTS;
+                    EVENTS_CTS$(($uarte_ns EVENTS_CTS))*;
                     EVENTS_CTS { EVENTS_CTS }
                 }
                 EVENTS_NCTS {
-                    EVENTS_NCTS($spim EVENTS_STOPPED);
+                    EVENTS_NCTS($spim_ns EVENTS_STOPPED);
                     EVENTS_NCTS { EVENTS_NCTS }
                 }
                 EVENTS_RXDRDY {
-                    EVENTS_RXDRDY;
+                    EVENTS_RXDRDY$(($uarte_ns EVENTS_RXDRDY))*;
                     EVENTS_RXDRDY { EVENTS_RXDRDY }
                 }
                 EVENTS_ENDRX {
-                    EVENTS_ENDRX($spim EVENTS_ENDRX);
+                    EVENTS_ENDRX($spim_ns EVENTS_ENDRX);
                     EVENTS_ENDRX { EVENTS_ENDRX }
                 }
                 EVENTS_TXDRDY {
-                    EVENTS_TXDRDY;
+                    EVENTS_TXDRDY$(($uarte_ns EVENTS_TXDRDY))*;
                     EVENTS_TXDRDY { EVENTS_TXDRDY }
                 }
                 EVENTS_ENDTX {
-                    EVENTS_ENDTX($spim EVENTS_ENDTX);
+                    EVENTS_ENDTX($spim_ns EVENTS_ENDTX);
                     EVENTS_ENDTX { EVENTS_ENDTX }
                 }
                 EVENTS_ERROR {
-                    EVENTS_ERROR($twim EVENTS_ERROR);
+                    EVENTS_ERROR($twim_ns EVENTS_ERROR);
                     EVENTS_ERROR { EVENTS_ERROR }
                 }
                 EVENTS_RXTO {
-                    EVENTS_RXTO;
+                    EVENTS_RXTO$(($uarte_ns EVENTS_RXTO))*;
                     EVENTS_RXTO { EVENTS_RXTO }
                 }
                 EVENTS_RXSTARTED {
-                    EVENTS_RXSTARTED($spim EVENTS_STARTED);
+                    EVENTS_RXSTARTED($spim_ns EVENTS_STARTED);
                     EVENTS_RXSTARTED { EVENTS_RXSTARTED }
                 }
                 EVENTS_TXSTARTED {
-                    EVENTS_TXSTARTED($twim EVENTS_TXSTARTED);
+                    EVENTS_TXSTARTED($twim_ns EVENTS_TXSTARTED);
                     EVENTS_TXSTARTED { EVENTS_TXSTARTED }
                 }
                 EVENTS_TXSTOPPED {
-                    EVENTS_TXSTOPPED;
+                    EVENTS_TXSTOPPED$(($uarte_ns EVENTS_TXSTOPPED))*;
                     EVENTS_TXSTOPPED { EVENTS_TXSTOPPED }
                 }
                 PUBLISH_CTS {
-                    PUBLISH_CTS;
+                    PUBLISH_CTS$(($uarte_ns PUBLISH_CTS))*;
                     CHIDX { CHIDX }
                     EN { EN }
                 }
                 PUBLISH_NCTS {
-                    PUBLISH_NCTS($spim PUBLISH_STOPPED);
+                    PUBLISH_NCTS($spim_ns PUBLISH_STOPPED);
                     CHIDX { CHIDX }
                     EN { EN }
                 }
                 PUBLISH_RXDRDY {
-                    PUBLISH_RXDRDY;
+                    PUBLISH_RXDRDY$(($uarte_ns PUBLISH_RXDRDY))*;
                     CHIDX { CHIDX }
                     EN { EN }
                 }
                 PUBLISH_ENDRX {
-                    PUBLISH_ENDRX($spim PUBLISH_ENDRX);
+                    PUBLISH_ENDRX($spim_ns PUBLISH_ENDRX);
                     CHIDX { CHIDX }
                     EN { EN }
                 }
                 PUBLISH_TXDRDY {
-                    PUBLISH_TXDRDY;
+                    PUBLISH_TXDRDY$(($uarte_ns PUBLISH_TXDRDY))*;
                     CHIDX { CHIDX }
                     EN { EN }
                 }
                 PUBLISH_ENDTX {
-                    PUBLISH_ENDTX($spim PUBLISH_ENDTX);
+                    PUBLISH_ENDTX($spim_ns PUBLISH_ENDTX);
                     CHIDX { CHIDX }
                     EN { EN }
                 }
                 PUBLISH_ERROR {
-                    PUBLISH_ERROR($twim PUBLISH_ERROR);
+                    PUBLISH_ERROR($twim_ns PUBLISH_ERROR);
                     CHIDX { CHIDX }
                     EN { EN }
                 }
                 PUBLISH_RXTO {
-                    PUBLISH_RXTO;
+                    PUBLISH_RXTO$(($uarte_ns PUBLISH_RXTO))*;
                     CHIDX { CHIDX }
                     EN { EN }
                 }
                 PUBLISH_RXSTARTED {
-                    PUBLISH_RXSTARTED($spim PUBLISH_STARTED);
+                    PUBLISH_RXSTARTED($spim_ns PUBLISH_STARTED);
                     CHIDX { CHIDX }
                     EN { EN }
                 }
                 PUBLISH_TXSTARTED {
-                    PUBLISH_TXSTARTED($twim PUBLISH_TXSTARTED);
+                    PUBLISH_TXSTARTED($twim_ns PUBLISH_TXSTARTED);
                     CHIDX { CHIDX }
                     EN { EN }
                 }
                 PUBLISH_TXSTOPPED {
-                    PUBLISH_TXSTOPPED;
+                    PUBLISH_TXSTOPPED$(($uarte_ns PUBLISH_TXSTOPPED))*;
                     CHIDX { CHIDX }
                     EN { EN }
                 }
                 SHORTS {
-                    SHORTS($spim SHORTS);
+                    SHORTS($spim_ns SHORTS);
                     ENDRX_STARTRX { ENDRX_STARTRX }
                     ENDRX_STOPRX { ENDRX_STOPRX }
                 }
                 INTEN {
-                    INTEN($twim INTEN);
+                    INTEN($twim_ns INTEN);
                     CTS { CTS }
                     NCTS { NCTS }
                     RXDRDY { RXDRDY }
@@ -510,7 +510,7 @@ macro_rules! map_uarte {
                     TXSTOPPED { TXSTOPPED }
                 }
                 INTENSET {
-                    INTENSET($spim INTENSET);
+                    INTENSET($spim_ns INTENSET);
                     CTS { CTS }
                     NCTS { NCTS }
                     RXDRDY { RXDRDY }
@@ -524,7 +524,7 @@ macro_rules! map_uarte {
                     TXSTOPPED { TXSTOPPED }
                 }
                 INTENCLR {
-                    INTENCLR($spim INTENCLR);
+                    INTENCLR($spim_ns INTENCLR);
                     CTS { CTS }
                     NCTS { NCTS }
                     RXDRDY { RXDRDY }
@@ -538,66 +538,66 @@ macro_rules! map_uarte {
                     TXSTOPPED { TXSTOPPED }
                 }
                 ERRORSRC {
-                    ERRORSRC;
+                    ERRORSRC$(($uarte_ns ERRORSRC))*;
                     OVERRUN { OVERRUN }
                     PARITY { PARITY }
                     FRAMING { FRAMING }
                     BREAK { BREAK }
                 }
                 ENABLE {
-                    ENABLE($spim ENABLE);
+                    ENABLE($spim_ns ENABLE);
                     ENABLE { ENABLE }
                 }
                 PSEL_RTS {
-                    PSEL_RTS($spim PSEL_SCK);
+                    PSEL_RTS($spim_ns PSEL_SCK);
                     PIN { PIN }
                     CONNECT { CONNECT }
                 }
                 PSEL_TXD {
-                    PSEL_TXD($spim PSEL_MOSI);
+                    PSEL_TXD($spim_ns PSEL_MOSI);
                     PIN { PIN }
                     CONNECT { CONNECT }
                 }
                 PSEL_CTS {
-                    PSEL_CTS($spim PSEL_MISO);
+                    PSEL_CTS($spim_ns PSEL_MISO);
                     PIN { PIN }
                     CONNECT { CONNECT }
                 }
                 PSEL_RXD {
-                    PSEL_RXD($spis PSEL_CSN);
+                    PSEL_RXD($spis_ns PSEL_CSN);
                     PIN { PIN }
                     CONNECT { CONNECT }
                 }
                 BAUDRATE {
-                    BAUDRATE($spim FREQUENCY);
+                    BAUDRATE($spim_ns FREQUENCY);
                     BAUDRATE { BAUDRATE }
                 }
                 RXD_PTR {
-                    RXD_PTR($spim RXD_PTR);
+                    RXD_PTR($spim_ns RXD_PTR);
                     PTR { PTR }
                 }
                 RXD_MAXCNT {
-                    RXD_MAXCNT($spim RXD_MAXCNT);
+                    RXD_MAXCNT($spim_ns RXD_MAXCNT);
                     MAXCNT { MAXCNT }
                 }
                 RXD_AMOUNT {
-                    RXD_AMOUNT($spim RXD_AMOUNT);
+                    RXD_AMOUNT($spim_ns RXD_AMOUNT);
                     AMOUNT { AMOUNT }
                 }
                 TXD_PTR {
-                    TXD_PTR($spim TXD_PTR);
+                    TXD_PTR($spim_ns TXD_PTR);
                     PTR { PTR }
                 }
                 TXD_MAXCNT {
-                    TXD_MAXCNT($spim TXD_MAXCNT);
+                    TXD_MAXCNT($spim_ns TXD_MAXCNT);
                     MAXCNT { MAXCNT }
                 }
                 TXD_AMOUNT {
-                    TXD_AMOUNT($spim TXD_AMOUNT);
+                    TXD_AMOUNT($spim_ns TXD_AMOUNT);
                     AMOUNT { AMOUNT }
                 }
                 CONFIG {
-                    CONFIG;
+                    CONFIG$(($uarte_ns CONFIG))*;
                     HWFC { HWFC }
                     PARITY { PARITY }
                     STOP { STOP }
@@ -620,11 +620,8 @@ map_uarte_ns_s! {
     UARTE0_NS,
     UARTE0_S,
     SPIM0_NS,
-    SPIM0_S,
     SPIS0_NS,
-    SPIS0_S,
     TWIM0_NS,
-    TWIM0_S,
 }
 
 #[cfg(nrf_mcu = "nrf9160")]
@@ -640,11 +637,8 @@ map_uarte_ns_s! {
     UARTE1_NS,
     UARTE1_S,
     SPIM1_NS,
-    SPIM1_S,
     SPIS1_NS,
-    SPIS1_S,
     TWIM1_NS,
-    TWIM1_S,
 }
 
 #[cfg(nrf_mcu = "nrf9160")]
@@ -660,11 +654,8 @@ map_uarte_ns_s! {
     UARTE2_NS,
     UARTE2_S,
     SPIM2_NS,
-    SPIM2_S,
     SPIS2_NS,
-    SPIS2_S,
     TWIM2_NS,
-    TWIM2_S,
 }
 
 #[cfg(nrf_mcu = "nrf9160")]
@@ -680,9 +671,6 @@ map_uarte_ns_s! {
     UARTE3_NS,
     UARTE3_S,
     SPIM3_NS,
-    SPIM3_S,
     SPIS3_NS,
-    SPIS3_S,
     TWIM3_NS,
-    TWIM3_S,
 }
