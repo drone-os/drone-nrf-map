@@ -9,7 +9,7 @@ nrf_reg_tokens! {
 #[allow(unused_variables)]
 fn periph_macros8_ns() {
     let reg = unsafe { Regs::take() };
-    #[cfg(nrf_mcu = "nrf9160")]
+    #[cfg(all(feature = "uarte", nrf_mcu = "nrf9160"))]
     {
         let uarte0 = drone_nrf_map::periph::uarte::periph_uarte0_ns!(reg);
     }
@@ -19,7 +19,7 @@ fn periph_macros8_ns() {
 #[allow(unused_variables)]
 fn periph_macros8_s() {
     let reg = unsafe { Regs::take() };
-    #[cfg(nrf_mcu = "nrf9160")]
+    #[cfg(all(feature = "uarte", nrf_mcu = "nrf9160"))]
     {
         let uarte0 = drone_nrf_map::periph::uarte::periph_uarte0_s!(reg);
     }

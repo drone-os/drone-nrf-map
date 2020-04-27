@@ -51,7 +51,7 @@ maintenance = { status = "actively-developed" }
 
 [features]
 default = []
-std = ["drone-core/std", "drone-cortex-m/std"]
+std = ["drone-core/std", "drone-cortexm/std"]
 bit-band = ["drone-nrf-map-pieces/bit-band"]
 uarte = ["drone-nrf-map-periph-uarte"]
 
@@ -59,9 +59,9 @@ uarte = ["drone-nrf-map-periph-uarte"]
 version = "0.12.0"
 path = "../drone-core"
 
-[dependencies.drone-cortex-m]
+[dependencies.drone-cortexm]
 version = "0.12.0"
-path = "../drone-cortex-m"
+path = "../drone-cortexm"
 
 [dependencies.drone-nrf-map-pieces]
 version = "=0.12.0"

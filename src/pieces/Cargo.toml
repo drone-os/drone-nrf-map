@@ -16,15 +16,15 @@ path = "lib.rs"
 
 [features]
 default = []
-bit-band = ["drone-cortex-m/bit-band"]
+bit-band = ["drone-cortexm/bit-band"]
 
 [dependencies.drone-core]
 version = "0.12.0"
 path = "../../../drone-core"
 
-[dependencies.drone-cortex-m]
+[dependencies.drone-cortexm]
 version = "0.12.0"
-path = "../../../drone-cortex-m"
+path = "../../../drone-cortexm"
 
 [dependencies.drone-nrf-map-pieces-1]
 version = "=0.12.0"
