@@ -11,7 +11,8 @@ Possible log types:
 - `[fixed]` for any bug fixes.
 - `[security]` to invite users to upgrade in case of vulnerabilities.
 
-### Unreleased
+### v0.12.0 (2020-05-01)
 
+- [added] Wrote tests for peripheral macros
 - [added] Added `uarte` peripheral mappings for nRF9160
 - [added] Added support for nRF9160 devices

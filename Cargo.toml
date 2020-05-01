@@ -1,3 +1,5 @@
+cargo-features = ["resolver"]
+
 [workspace]
 members = [
     "svd",
@@ -22,6 +24,7 @@ name = "drone-nrf-map"
 version = "0.12.0"
 authors = ["Valentine Valyaeff <valentine.valyaeff@gmail.com>"]
 edition = "2018"
+resolver = "2"
 exclude = ["/svd_files"]
 repository = "https://github.com/drone-os/drone-nrf-map"
 homepage = "https://www.drone-os.com/"

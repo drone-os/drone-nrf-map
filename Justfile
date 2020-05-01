@@ -3,7 +3,6 @@ nrf_mcu := 'nrf52832'
 export DRONE_RUSTFLAGS := '--cfg cortexm_core="' + cortexm_core + '" ' + '--cfg nrf_mcu="' + nrf_mcu + '"'
 target := 'thumbv7em-none-eabihf'
 features := 'bit-band uarte'
-cargo_features := '-Z features=itarget,build_dep,dev_dep -Z package-features'
 
 # Install dependencies
 deps:
@@ -14,37 +13,37 @@ deps:
 
 # Reformat the source code
 fmt:
-	cargo {{cargo_features}} fmt
+	cargo fmt
 
-# Check for mistakes
+# Check the source code for mistakes
 lint:
-	cargo {{cargo_features}} clippy --package drone-nrf-map-svd
-	drone env {{target}} -- cargo {{cargo_features}} clippy --features "{{features}}" --all --exclude drone-nrf-map-svd
+	cargo clippy --package drone-nrf-map-svd
+	drone env {{target}} -- cargo clippy --features "{{features}}" --all --exclude drone-nrf-map-svd
 
-# Generate the docs
+# Build the documentation
 doc:
-	cargo {{cargo_features}} doc --package drone-nrf-map-svd
-	drone env {{target}} -- cargo {{cargo_features}} doc --features "{{features}}" --package drone-nrf-map
+	cargo doc --package drone-nrf-map-svd
+	drone env {{target}} -- cargo doc --features "{{features}}" --package drone-nrf-map
 
-# Open the docs in the browser
+# Open the documentation in a browser
 doc-open: doc
-	drone env {{target}} -- cargo {{cargo_features}} doc --features "{{features}}" --package drone-nrf-map --open
+	drone env {{target}} -- cargo doc --features "{{features}}" --package drone-nrf-map --open
 
 # Run the tests
 test:
-	drone env -- cargo {{cargo_features}} test --features "{{features}} std" --package drone-nrf-map
+	drone env -- cargo test --features "{{features}} std" --package drone-nrf-map
 
 # Test all MCUs
 test-all:
-	DRONE_RUSTFLAGS='--cfg cortexm_core="cortexm4f_r0p1" --cfg nrf_mcu="nrf52810"' drone env -- cargo {{cargo_features}} test --package drone-nrf-map --features "{{features}} std"
-	DRONE_RUSTFLAGS='--cfg cortexm_core="cortexm4f_r0p1" --cfg nrf_mcu="nrf52811"' drone env -- cargo {{cargo_features}} test --package drone-nrf-map --features "{{features}} std"
-	DRONE_RUSTFLAGS='--cfg cortexm_core="cortexm4f_r0p1" --cfg nrf_mcu="nrf52832"' drone env -- cargo {{cargo_features}} test --package drone-nrf-map --features "{{features}} std"
-	DRONE_RUSTFLAGS='--cfg cortexm_core="cortexm4f_r0p1" --cfg nrf_mcu="nrf52840"' drone env -- cargo {{cargo_features}} test --package drone-nrf-map --features "{{features}} std"
-	DRONE_RUSTFLAGS='--cfg cortexm_core="cortexm33f_r0p2" --cfg nrf_mcu="nrf9160"' drone env -- cargo {{cargo_features}} test --package drone-nrf-map --features "{{features}} std"
+	DRONE_RUSTFLAGS='--cfg cortexm_core="cortexm4f_r0p1" --cfg nrf_mcu="nrf52810"' drone env -- cargo test --package drone-nrf-map --features "{{features}} std"
+	DRONE_RUSTFLAGS='--cfg cortexm_core="cortexm4f_r0p1" --cfg nrf_mcu="nrf52811"' drone env -- cargo test --package drone-nrf-map --features "{{features}} std"
+	DRONE_RUSTFLAGS='--cfg cortexm_core="cortexm4f_r0p1" --cfg nrf_mcu="nrf52832"' drone env -- cargo test --package drone-nrf-map --features "{{features}} std"
+	DRONE_RUSTFLAGS='--cfg cortexm_core="cortexm4f_r0p1" --cfg nrf_mcu="nrf52840"' drone env -- cargo test --package drone-nrf-map --features "{{features}} std"
+	DRONE_RUSTFLAGS='--cfg cortexm_core="cortexm33f_r0p2" --cfg nrf_mcu="nrf9160"' drone env -- cargo test --package drone-nrf-map --features "{{features}} std"
 
 # Update README.md
 readme:
-	cargo {{cargo_features}} readme -o README.md
+	cargo readme -o README.md
 
 # Bump the versions
 version-bump version drone-core-version drone-cortexm-version drone-svd-version:
@@ -65,37 +64,37 @@ version-bump version drone-core-version drone-cortexm-version drone-svd-version:
 
 # Publish to crates.io
 publish:
-	cd svd && cargo {{cargo_features}} publish
-	sleep 5
-	cd src/pieces/1 && drone env {{target}} -- cargo {{cargo_features}} publish
-	sleep 5
-	cd src/pieces/2 && drone env {{target}} -- cargo {{cargo_features}} publish
-	sleep 5
-	cd src/pieces/3 && drone env {{target}} -- cargo {{cargo_features}} publish
-	sleep 5
-	cd src/pieces/4 && drone env {{target}} -- cargo {{cargo_features}} publish
-	sleep 5
-	cd src/pieces/5 && drone env {{target}} -- cargo {{cargo_features}} publish
-	sleep 5
-	cd src/pieces/6 && drone env {{target}} -- cargo {{cargo_features}} publish
-	sleep 5
-	cd src/pieces/7 && drone env {{target}} -- cargo {{cargo_features}} publish
-	sleep 5
-	cd src/pieces/8 && drone env {{target}} -- cargo {{cargo_features}} publish
-	sleep 5
-	cd src/pieces/9 && drone env {{target}} -- cargo {{cargo_features}} publish
-	sleep 5
-	cd src/pieces/10 && drone env {{target}} -- cargo {{cargo_features}} publish
-	sleep 5
-	cd src/pieces/11 && drone env {{target}} -- cargo {{cargo_features}} publish
-	sleep 5
-	cd src/pieces/12 && drone env {{target}} -- cargo {{cargo_features}} publish
-	sleep 5
-	cd src/pieces && drone env {{target}} -- cargo {{cargo_features}} publish
-	sleep 5
-	cd src/periph/uarte && drone env {{target}} -- cargo {{cargo_features}} publish
-	sleep 5
-	drone env {{target}} -- cargo {{cargo_features}} publish --features "{{features}}"
+	cd svd && cargo publish
+	sleep 10
+	cd src/pieces/1 && drone env {{target}} -- cargo publish
+	sleep 10
+	cd src/pieces/2 && drone env {{target}} -- cargo publish
+	sleep 10
+	cd src/pieces/3 && drone env {{target}} -- cargo publish
+	sleep 10
+	cd src/pieces/4 && drone env {{target}} -- cargo publish
+	sleep 10
+	cd src/pieces/5 && drone env {{target}} -- cargo publish
+	sleep 10
+	cd src/pieces/6 && drone env {{target}} -- cargo publish
+	sleep 10
+	cd src/pieces/7 && drone env {{target}} -- cargo publish
+	sleep 10
+	cd src/pieces/8 && drone env {{target}} -- cargo publish
+	sleep 10
+	cd src/pieces/9 && drone env {{target}} -- cargo publish
+	sleep 10
+	cd src/pieces/10 && drone env {{target}} -- cargo publish
+	sleep 10
+	cd src/pieces/11 && drone env {{target}} -- cargo publish
+	sleep 10
+	cd src/pieces/12 && drone env {{target}} -- cargo publish
+	sleep 10
+	cd src/pieces && drone env {{target}} -- cargo publish
+	sleep 10
+	cd src/periph/uarte && drone env {{target}} -- cargo publish
+	sleep 10
+	drone env {{target}} -- cargo publish --features "{{features}}"
 
 # Publish the docs to api.drone-os.com
 publish-doc: doc
