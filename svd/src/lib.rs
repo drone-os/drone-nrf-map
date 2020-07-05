@@ -1,6 +1,5 @@
 //! Nordic Semi nRFx SVD to bindings for Drone, an Embedded Operating System.
 
-#![feature(str_strip)]
 #![warn(missing_docs)]
 #![warn(clippy::pedantic)]
 #![allow(clippy::doc_markdown)]
