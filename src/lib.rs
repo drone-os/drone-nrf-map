@@ -28,7 +28,7 @@
 //! # Documentation
 //!
 //! - [Drone Book](https://book.drone-os.com/)
-//! - [API documentation](https://api.drone-os.com/drone-nrf-map/0.12/)
+//! - [API documentation](https://api.drone-os.com/drone-nrf-map/0.13/)
 //!
 //! The API documentation intentionally skips auto-generated [`reg`] and [`thr`]
 //! bindings. Otherwise it would use several gigabytes of space and would be
@@ -42,7 +42,7 @@
 //!
 //! ```toml
 //! [dependencies]
-//! drone-nrf-map = { version = "0.12.0", features = [...] }
+//! drone-nrf-map = { version = "0.13.0", features = [...] }
 //! ```
 //!
 //! Add or extend `std` feature as follows:

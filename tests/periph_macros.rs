@@ -2,7 +2,7 @@ use drone_core::token::Token;
 use drone_nrf_map::nrf_reg_tokens;
 
 nrf_reg_tokens! {
-    struct Regs;
+    index => pub Regs;
 }
 
 #[test]

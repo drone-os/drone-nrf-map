@@ -21,14 +21,14 @@ members = [
 
 [package]
 name = "drone-nrf-map"
-version = "0.12.0"
+version = "0.13.0"
 authors = ["Valentine Valyaeff <valentine.valyaeff@gmail.com>"]
 edition = "2018"
 resolver = "2"
 exclude = ["/svd_files"]
 repository = "https://github.com/drone-os/drone-nrf-map"
 homepage = "https://www.drone-os.com/"
-documentation = "https://api.drone-os.com/drone-nrf-map/0.12/drone_nrf_map/"
+documentation = "https://api.drone-os.com/drone-nrf-map/0.13/drone_nrf_map/"
 readme = "README.md"
 license = "MIT OR Apache-2.0"
 keywords = [
@@ -59,18 +59,18 @@ bit-band = ["drone-nrf-map-pieces/bit-band"]
 uarte = ["drone-nrf-map-periph-uarte"]
 
 [dependencies.drone-core]
-version = "0.12.0"
+version = "0.13.0"
 path = "../drone-core"
 
 [dependencies.drone-cortexm]
-version = "0.12.0"
+version = "0.13.0"
 path = "../drone-cortexm"
 
 [dependencies.drone-nrf-map-pieces]
-version = "=0.12.0"
+version = "=0.13.0"
 path = "src/pieces"
 
 [dependencies.drone-nrf-map-periph-uarte]
-version = "=0.12.0"
+version = "=0.13.0"
 path = "src/periph/uarte"
 optional = true

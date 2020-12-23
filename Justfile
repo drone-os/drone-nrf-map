@@ -65,35 +65,24 @@ version-bump version drone-core-version drone-cortexm-version drone-svd-version:
 # Publish to crates.io
 publish:
 	cd svd && cargo publish
-	sleep 10
+	sleep 30
 	cd src/pieces/1 && drone env {{target}} -- cargo publish
-	sleep 10
 	cd src/pieces/2 && drone env {{target}} -- cargo publish
-	sleep 10
 	cd src/pieces/3 && drone env {{target}} -- cargo publish
-	sleep 10
 	cd src/pieces/4 && drone env {{target}} -- cargo publish
-	sleep 10
 	cd src/pieces/5 && drone env {{target}} -- cargo publish
-	sleep 10
 	cd src/pieces/6 && drone env {{target}} -- cargo publish
-	sleep 10
 	cd src/pieces/7 && drone env {{target}} -- cargo publish
-	sleep 10
 	cd src/pieces/8 && drone env {{target}} -- cargo publish
-	sleep 10
 	cd src/pieces/9 && drone env {{target}} -- cargo publish
-	sleep 10
 	cd src/pieces/10 && drone env {{target}} -- cargo publish
-	sleep 10
 	cd src/pieces/11 && drone env {{target}} -- cargo publish
-	sleep 10
 	cd src/pieces/12 && drone env {{target}} -- cargo publish
-	sleep 10
+	sleep 30
 	cd src/pieces && drone env {{target}} -- cargo publish
-	sleep 10
+	sleep 30
 	cd src/periph/uarte && drone env {{target}} -- cargo publish
-	sleep 10
+	sleep 30
 	drone env {{target}} -- cargo publish --features "{{features}}"
 
 # Publish the docs to api.drone-os.com
